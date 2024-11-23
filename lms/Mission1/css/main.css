@@ -31,7 +31,7 @@ body {
     align-items: flex-start;
     padding: 20px;
     color: white;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .header img {
@@ -85,7 +85,7 @@ body {
 .section {
     margin: 5px;
     padding: 0px;
-    overflow: visible;
+    /* overflow: visible; */
 }
 
 .section h2 {
@@ -100,12 +100,12 @@ body {
 }
 
 .thumbnail {
+    /* position: relative; */
     margin-right: 20px;
     width: 150px;
     flex-shrink: 0;
     overflow-x: auto;
     transition: transform 0.3s ease-in-out;
-    position: relative;
 }
 
 .thumbnail:hover {
