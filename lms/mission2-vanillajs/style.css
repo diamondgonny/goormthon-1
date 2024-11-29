@@ -100,15 +100,23 @@ main {
     outline: 2px solid #ffffff;
 }
 
+.item.editing {
+    outline: 2px solid #ffffff;
+}
+
 .actions button {
-    color:crimson;
+    color: crimson;
     margin-right: 1rem;
     opacity: 0.8;
     transition: 0.1s;
 }
 
-.action button.remove-btn {
-    color: crimson;
+.actions button.material-icons:nth-child(2) {
+    color: green;
+}
+
+.actions button.material-icons:nth-child(3) {
+    color: #444444;
 }
 
 .actions button:hover {
