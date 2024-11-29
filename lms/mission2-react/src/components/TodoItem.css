@@ -1,0 +1,78 @@
+.todoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background-color: lightblue;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+  }
+
+  .todoItem:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .checkbox {
+    margin-right: 1rem;
+  }
+
+  .todoInput {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0 4px; /* 맨 왼쪽에 커서가 위치해서 처음에 안보임 */
+    font-weight: 400;
+    color: black;
+    font-size: 20px;
+    flex: 1 1 0%;
+    margin-right: 1rem;
+  }
+
+  .todoInput:not(:disabled) {
+    border-bottom: 2px solid #ffffff;
+  }
+
+  .todoItemComplete {
+    opacity: 0.7;
+  }
+
+  .todoItemComplete .todoInput {
+    text-decoration: line-through;
+  }
+
+  .todoItem:hover,
+  .todoItem:focus-within {
+    outline: 2px solid #ffffff;
+  }
+
+  .todoItemEditing {
+    outline: 2px solid #ffffff;
+  }
+
+  .actionButtons {
+    display: flex;
+  }
+
+  .actionButton {
+    color: crimson;
+    margin-right: 1rem;
+    opacity: 0.8;
+    transition: 0.1s;
+  }
+
+  .actionButtonDone {
+    color: green;
+  }
+
+  .actionButtonCancel {
+    color: #444444;
+  }
+
+  .actionButton:hover {
+    opacity: 1;
+  }
+
+  .actionButton:last-of-type {
+    margin-right: 0;
+  }
