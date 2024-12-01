@@ -1,20 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './TodoItem.css';
 
-const TodoItem = ({ todo, isNew, onUpdate, onDelete, editingTodoId, onEditingChange }) => {
+const TodoItem = ({ todo, editingTodoId, onEditingChange, onUpdate, onDelete }) => {
   const [text, setText] = useState(todo.text);
   const [originalText, setOriginalText] = useState(todo.text);
   const inputRef = useRef(null);
 
   // 현재 아이템이 편집 중인지 확인
   const isEditing = editingTodoId === todo.id;
-
-  // 새로운 todo인 경우 최초 focus
-  useEffect(() => {
-    if (isNew && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isNew]);
 
   // editing 상태 변경시 focus
   useEffect(() => {
@@ -33,12 +26,12 @@ const TodoItem = ({ todo, isNew, onUpdate, onDelete, editingTodoId, onEditingCha
   };
 
   const finishEditing = () => {
-    onEditingChange(null); // 편집 종료
+    onEditingChange(null);
     onUpdate({ ...todo, text });
   };
 
   const cancelEditing = () => {
-    onEditingChange(null); // 편집 종료
+    onEditingChange(null);
     setText(originalText);
   };
 

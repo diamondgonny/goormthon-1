@@ -7,7 +7,6 @@ function App() {
     const savedTodos = localStorage.getItem('my_todos');
     return savedTodos ? JSON.parse(savedTodos) : [];
   });
-  const [newTodoId, setNewTodoId] = useState(null);  // 새로운 todo의 id를 추적
   const [editingTodoId, setEditingTodoId] = useState(null);
 
   useEffect(() => {
@@ -15,30 +14,23 @@ function App() {
   }, [todos]);
 
   const createNewTodo = () => {
-    const newId = new Date().getTime();
     const newTodo = {
       id: new Date().getTime(),
       text: '',
       complete: false
     };
     setTodos([newTodo, ...todos]);
-    setNewTodoId(newId);
+    setEditingTodoId(newTodo.id);
   };
 
   const updateTodo = (updatedTodo) => {
     setTodos(todos.map(todo =>
       todo.id === updatedTodo.id ? updatedTodo : todo
     ));
-    if (updatedTodo.id === newTodoId) {
-      setNewTodoId(null); // 업데이트 후 newTodoId 초기화
-    }
   };
 
   const deleteTodo = (deletedTodo) => {
     setTodos(todos.filter(todo => todo.id !== deletedTodo));
-    if (deletedTodo.id === newTodoId) {
-      setNewTodoId(null); // 업데이트 후 newTodoId 초기화
-    }
   };
 
   return (
@@ -55,7 +47,6 @@ function App() {
             <TodoItem
               key={todo.id}
               todo={todo}
-              isNew={todo.id === newTodoId}
               editingTodoId={editingTodoId}
               onEditingChange={setEditingTodoId}
               onUpdate={updateTodo}
