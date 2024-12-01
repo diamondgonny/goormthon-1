@@ -75,7 +75,7 @@ const TodoItem = ({ todo, editingTodoId, onEditingChange, onUpdate, onDelete }) 
             </button>
           </>
         )}
-        <button className="actionButton material-icons" onClick={() => onDelete(todo.id)}>
+        <button className="actionButton material-icons" onClick={() => onDelete(todo)}>
           remove_circle
         </button>
       </div>

@@ -30,7 +30,9 @@ function App() {
   };
 
   const deleteTodo = (deletedTodo) => {
-    setTodos(todos.filter(todo => todo.id !== deletedTodo));
+    setTodos(todos.filter(todo =>
+      todo.id !== deletedTodo.id
+    ));
   };
 
   return (
