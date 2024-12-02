@@ -3,20 +3,31 @@ import "./App.css";
 
 function App() {
   const [username, setUsername] = useState("");
+  const [userData, setUserData] = useState(null);
+  const [repos, setRepos] = useState([]);
 
   const handleInputChange = (e) => {
     setUsername(e.target.value);
   };
 
-  const handleSearch = () => {
-    console.log("Search for:", username);
-    // 여기에 API 호출 로직
+  const handleSearch = async () => {
+    try {
+      const userResponse = await fetch(`https://api.github.com/users/${username}`);
+      const userData = await userResponse.json();
+      setUserData(userData);
+
+      const reposResponse = await fetch(userData.repos_url);
+      const reposData = await reposResponse.json();
+      setRepos(reposData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   return (
     <div className="container">
       <header className="header">
-        <h1>Search GitHub Users</h1>
+        <h1>GitHub Finder</h1>
         <p>Enter a username to fetch a user profile and repos</p>
         <div className="search-bar">
           <input
@@ -29,34 +40,52 @@ function App() {
         </div>
       </header>
 
-      <div className="profile-card">
-        <img
-          src="https://via.placeholder.com/150"
-          alt="User Profile"
-          className="profile-image"
-        />
-        <h2>Username</h2>
-        <p>Public Repos: 53 | Followers: 1174</p>
-        <a href="#" className="button">
-          View Profile
-        </a>
-      </div>
+      {userData && (
+        <div className="profile-card">
+          <img
+            src={userData.avatar_url}
+            alt="User Profile"
+            className="profile-image"
+          />
+          <div className="stats">
+            <span className="stat-item">Public Repos: {userData.public_repos}</span>
+            <span className="stat-item">Public Gists: {userData.public_gists}</span>
+            <span className="stat-item">Followers: {userData.followers}</span>
+            <span className="stat-item">Following: {userData.following}</span>
+          </div>
+          <div className="user-info">
+            <p>Company: {userData.company || 'null'}</p>
+            <p>Website/Blog: {userData.blog || 'null'}</p>
+            <p>Location: {userData.location || 'null'}</p>
+            <p>Member Since: {new Date(userData.created_at).toISOString()}</p>
+          </div>
+          <a href={userData.html_url} className="button" target="_blank" rel="noopener noreferrer">
+            View Profile
+          </a>
+        </div>
+      )}
 
-      <section className="repos">
-        <h3>Latest Repos</h3>
-        <ul>
-          <li>
-            <a href="#" className="repo-link">
-              Repo 1
-            </a>
-          </li>
-          <li>
-            <a href="#" className="repo-link">
-              Repo 2
-            </a>
-          </li>
-        </ul>
-      </section>
+      {repos.length > 0 && (
+        <section className="repos">
+          <h3>Latest Repos</h3>
+          <ul>
+            {repos.map(repo => (
+              <li key={repo.id}>
+                <div className="repo-info">
+                  <a href={repo.html_url} className="repo-link" target="_blank" rel="noopener noreferrer">
+                    {repo.name}
+                  </a>
+                  <div className="repo-stats">
+                    <span>Stars: {repo.stargazers_count}</span>
+                    <span>Watchers: {repo.watchers_count}</span>
+                    <span>Forks: {repo.forks_count}</span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }
