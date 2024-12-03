@@ -75,7 +75,7 @@ function App() {
                   <p>Company: {userData.company || 'null'}</p>
                   <p>Website/Blog: {userData.blog || 'null'}</p>
                   <p>Location: {userData.location || 'null'}</p>
-                  <p>Member Since: {new Date(userData.created_at).toISOString()}</p>
+                  <p>Member Since: {new Date(userData.created_at).toLocaleDateString()}</p>
                 </div>
               </div>
             </div>
