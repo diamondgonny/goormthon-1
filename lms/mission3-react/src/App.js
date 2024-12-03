@@ -24,6 +24,12 @@ function App() {
     }
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <>
       <nav className="navbar">
@@ -39,6 +45,7 @@ function App() {
               placeholder="Enter username"
               value={username}
               onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
             />
             <button onClick={handleSearch}>Search</button>
           </div>
