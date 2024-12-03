@@ -153,10 +153,26 @@
 }
 
 .stat-item {
-  background: #f4f4f4;
   padding: 5px 10px;
   border-radius: 4px;
   font-size: 0.9rem;
+  color: #f4f4f4;
+}
+
+.stat-item:nth-child(1) {
+  background-color: #007bff;
+}
+
+.stat-item:nth-child(2) {
+  background-color: #a0a0a0;
+}
+
+.stat-item:nth-child(3) {
+  background-color: #19a07d;
+}
+
+.stat-item:nth-child(4) {
+  background-color: #1990a0;
 }
 
 .user-info {
@@ -182,9 +198,20 @@
 }
 
 .repo-stats span {
-  background: #f4f4f4;
   padding: 3px 8px;
   border-radius: 3px;
   font-size: 0.8rem;
-  color: #555;
+  color: #f4f4f4;
+}
+
+.repo-stats span:nth-child(1) {
+  background-color: #007bff;
+}
+
+.repo-stats span:nth-child(2) {
+  background-color: #a0a0a0;
+}
+
+.repo-stats span:nth-child(3) {
+  background-color: #19a07d;
 }
