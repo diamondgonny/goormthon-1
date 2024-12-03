@@ -27,7 +27,8 @@
   gap: 1rem;
   margin-bottom: 20px;
   padding: 1rem;
-  border: 1px solid #e1e4e8;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
 .header h1 {
@@ -133,7 +134,7 @@
 }
 
 .repos h3 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #333;
   margin-bottom: 10px;
 }
