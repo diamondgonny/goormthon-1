@@ -1,8 +1,23 @@
+* {
+  font-family: sans-serif;
+}
+
+.navbar {
+  background: #007bff;
+  padding: 1rem 1rem;
+  color: white;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
 .container {
   max-width: 800px;
   margin: auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
 }
 
 .header {
