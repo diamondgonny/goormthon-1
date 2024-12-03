@@ -6,8 +6,8 @@ function App() {
   const [userData, setUserData] = useState(null);
   const [repos, setRepos] = useState([]);
 
-  const handleInputChange = (e) => {
-    setUsername(e.target.value);
+  const handleInputChange = (event) => {
+    setUsername(event.target.value);
   };
 
   const handleSearch = async () => {
