@@ -130,37 +130,6 @@
   background: #0056b3;
 }
 
-.repos {
-  margin-top: 20px;
-}
-
-.repos h3 {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.repos ul {
-  list-style: none;
-  padding: 0;
-}
-
-.repos ul li {
-  padding: 10px;
-  border: 1px solid #ddd;
-  margin-bottom: 5px;
-  border-radius: 4px;
-}
-
-.repos ul li .repo-link {
-  text-decoration: none;
-  color: #007bff;
-}
-
-.repos ul li .repo-link:hover {
-  text-decoration: underline;
-}
-
 .stats {
   display: flex;
   height: 30px;
@@ -217,6 +186,37 @@
 
 .user-info p:last-child {
   border-bottom: none;
+}
+
+.repos {
+  margin-top: 20px;
+}
+
+.repos h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.repos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.repos ul li {
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+.repos ul li .repo-link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.repos ul li .repo-link:hover {
+  text-decoration: underline;
 }
 
 .repo-info {
