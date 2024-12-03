@@ -75,19 +75,31 @@
 }
 
 .profile-card {
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   padding: 20px;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  text-align: center;
-  margin-bottom: 20px;
+}
+
+.profile-content {
+  display: flex;
+  gap: 20px;
+}
+
+.profile-image-container {
+  flex-shrink: 0;
 }
 
 .profile-card .profile-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   margin-bottom: 10px;
+}
+
+.profile-info {
+  flex-grow: 1;
 }
 
 .profile-card h2 {
@@ -101,12 +113,15 @@
 }
 
 .profile-card .button {
-  display: inline-block;
-  padding: 10px 20px;
+  display: block;
+  width: 250px;
+  margin: 10px 0;
+  padding: 10px 0;
   background: #007bff;
   color: white;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 15px;
+  text-align: center;
 }
 
 .profile-card .button:hover {
@@ -146,10 +161,11 @@
 
 .stats {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  height: 30px;
   gap: 10px;
-  margin: 15px 0;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 0 20px 0;
 }
 
 .stat-item {
@@ -176,13 +192,29 @@
 }
 
 .user-info {
-  margin: 15px 0;
-  text-align: left;
+  margin: 0;
+  padding: 0;
+  height: 200px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 .user-info p {
-  margin: 5px 0;
+  margin: 0;
+  padding: 12px 15px;
   color: #555;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  height: 50px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-info p:last-child {
+  border-bottom: none;
 }
 
 .repo-info {
@@ -214,4 +246,29 @@
 
 .repo-stats span:nth-child(3) {
   background-color: #19a07d;
+}
+
+@media (max-width: 768px) {
+  .profile-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-image-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-card .button {
+    width: 100%;
+    max-width: 250px;
+  }
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+  }
 }
