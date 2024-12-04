@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
-import Navbar from "./components/Navbar";
-import SearchBar from "./components/SearchBar";
-import Profile from "./components/Profile";
-import RepoList from "./components/RepoList";
+import Navbar from "./components/navbar/Navbar";
+import SearchBar from "./components/search-bar/SearchBar";
+import Profile from "./components/profile/Profile";
+import RepoList from "./components/repo-list/RepoList";
 import User from "./models/User";
 import Repository from "./models/Repository";
 
