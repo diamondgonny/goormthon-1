@@ -1,7 +1,7 @@
 'use client';
 
-import SearchBar from '../components/SearchBar';
-import { useLanguage } from '../context/LanguageContext';
+import SearchBar from '@/components/client/SearchBar';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Home() {
   const { language } = useLanguage();

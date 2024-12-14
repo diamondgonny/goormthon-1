@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { fetchSearchMovies } from '../../utils/api';
-import MovieCard from '../../components/MovieCard';
-import { useLanguage } from '../../context/LanguageContext';
+import { fetchSearchMovies } from '@/utils/api';
+import { useLanguage } from '@/context/LanguageContext';
+import MovieCard from '@/components/client/MovieCard';
 
 // 검색 결과 UI 렌더링을 담당하는 컴포넌트
 function SearchResultsView({ query, movies, language }) {
@@ -44,13 +44,13 @@ export default function SearchResults({ initialQuery }) {
   useEffect(() => {
     const fetchData = async () => {
       if (query) {
-        const data = await fetchSearchMovies(query);
+        const data = await fetchSearchMovies(query, language);
         setMovies(data.results);
       }
     };
 
     fetchData();
-  }, [query]);
+  }, [query, language]);
 
   return <SearchResultsView query={query} movies={movies} language={language} />;
 }

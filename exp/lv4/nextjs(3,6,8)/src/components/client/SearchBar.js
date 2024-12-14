@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 // 검색 폼 UI 렌더링을 담당하는 컴포넌트
 function SearchForm({ query, onQueryChange, onSubmit, language }) {
