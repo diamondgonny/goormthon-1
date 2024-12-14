@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function NavBar() {
-  const [language, setLanguage] = useState('ko');
+  const { language, setLanguage } = useLanguage();
 
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
@@ -22,10 +22,10 @@ export default function NavBar() {
 
           <div className="flex items-center space-x-4">
             <Link href="/" className="text-gray-300 hover:text-white px-3 py-2">
-              홈
+              {language === 'ko' ? '홈' : 'Home'}
             </Link>
             <Link href="/popular" className="text-gray-300 hover:text-white px-3 py-2">
-              인기영화
+              {language === 'ko' ? '인기영화' : 'Popular Movies'}
             </Link>
             <select
               value={language}

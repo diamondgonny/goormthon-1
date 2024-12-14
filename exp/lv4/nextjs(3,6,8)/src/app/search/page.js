@@ -1,29 +1,17 @@
-import { fetchSearchMovies } from '../../utils/api';
-import MovieCard from '../../components/MovieCard';
+import SearchResults from './SearchResults';
 
-async function SearchPage({ searchParams }) {
-  const { query } = await searchParams;
-  const data = await fetchSearchMovies(query);
-  const movies = data.results;
+export default function SearchPage({ searchParams }) {
+  return <SearchResults initialQuery={searchParams.query} />;
+} 
 
-  return (
-    <main className="h-full">
-      <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-2xl font-bold text-white pt-8 pb-4">
-          &quot;{query}&quot; 검색 결과
-        </h1>
-        {movies.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-8">
-            {movies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
-          </div>
-        ) : (
-          <p className="text-white text-center py-8">검색 결과가 없습니다.</p>
-        )}
-      </div>
-    </main>
-  );
-}
+// 서버 컴포넌트와 클라이언트 컴포넌트의 분리
+// - 서버 전용 API를 클라이언트 컴포넌트에서 직접 사용하면 에러 발생 (searchParams)
+// - 이는 Next.js의 서버-클라이언트 데이터 흐름 규칙을 위반
+// - 파일을 분리하면 서버에서 searchParams를 안전하게 처리
+// - 데이터를 클라이언트 컴포넌트로 전달하는 역할만 수행
 
-export default SearchPage; 
+// 위와 같은 해결 방식의 장점
+// - 서버에서 데이터를 받아 props로 전달
+// - 클라이언트 컴포넌트는 전달받은 props만 사용
+// - 명확한 데이터 흐름
+// - 서버와 클라이언트의 역할 구분이 명확

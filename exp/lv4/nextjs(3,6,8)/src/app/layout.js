@@ -1,5 +1,9 @@
-import "./globals.css";
-import NavBar from '../components/NavBar';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import NavBar from '@/components/NavBar';
+import { LanguageProvider } from '@/context/LanguageContext';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Movie App',
@@ -9,11 +13,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
-        <NavBar />
-        <div className="flex-1">
+      <body className={inter.className}>
+        <LanguageProvider>
+          <NavBar />
           {children}
-        </div>
+        </LanguageProvider>
       </body>
     </html>
   );
