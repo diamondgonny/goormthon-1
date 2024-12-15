@@ -7,11 +7,27 @@ import MovieCard from '@/components/client/MovieCard';
 
 // 검색 결과 UI 렌더링을 담당하는 컴포넌트
 function SearchResultsView({ query, movies, language }) {
+  const getText = (key) => {
+    const texts = {
+      searchResults: {
+        ko: '검색 결과',
+        en: 'Search Results',
+        ja: '検索結果'
+      },
+      noResults: {
+        ko: '검색 결과가 없습니다.',
+        en: 'No search results found.',
+        ja: '検索結果が見つかりませんでした。'
+      }
+    };
+    return texts[key][language] || texts[key]['ko'];
+  };
+
   return (
     <main className="h-full">
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="text-2xl font-bold text-white pt-8 pb-4">
-          &quot;{query}&quot; {language === 'ko' ? '검색 결과' : 'Search Results'}
+          &quot;{query}&quot; {getText('searchResults')}
         </h1>
         {movies.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 py-8">
@@ -21,7 +37,7 @@ function SearchResultsView({ query, movies, language }) {
           </div>
         ) : (
           <p className="text-white text-center py-8">
-            {language === 'ko' ? '검색 결과가 없습니다.' : 'No search results found.'}
+            {getText('noResults')}
           </p>
         )}
       </div>

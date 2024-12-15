@@ -10,6 +10,22 @@ export default function NavBar() {
     setLanguage(e.target.value);
   };
 
+  const getNavText = (key) => {
+    const texts = {
+      home: {
+        ko: '홈',
+        en: 'Home',
+        ja: 'ホーム'
+      },
+      popular: {
+        ko: '인기영화',
+        en: 'Popular Movies',
+        ja: '人気映画'
+      }
+    };
+    return texts[key][language] || texts[key]['ko'];
+  };
+
   return (
     <nav className="bg-gray-800 shadow-lg">
       <div className="max-w-7xl mx-auto px-4">
@@ -22,10 +38,10 @@ export default function NavBar() {
 
           <div className="flex items-center space-x-4">
             <Link href="/" className="text-gray-300 hover:text-white px-3 py-2">
-              {language === 'ko' ? '홈' : 'Home'}
+              {getNavText('home')}
             </Link>
             <Link href="/popular" className="text-gray-300 hover:text-white px-3 py-2">
-              {language === 'ko' ? '인기영화' : 'Popular Movies'}
+              {getNavText('popular')}
             </Link>
             <select
               value={language}
@@ -34,6 +50,7 @@ export default function NavBar() {
             >
               <option value="ko">한국어</option>
               <option value="en">English</option>
+              <option value="ja">日本語</option>
             </select>
           </div>
         </div>
