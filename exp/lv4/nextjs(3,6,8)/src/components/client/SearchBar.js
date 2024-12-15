@@ -46,8 +46,8 @@ function SearchForm({ query, onQueryChange, onSubmit, language }) {
 // 검색 폼 로직을 담당하는 컴포넌트
 export default function SearchBar() {
   const [query, setQuery] = useState('');
-  const router = useRouter();
   const { language } = useLanguage();
+  const router = useRouter();  // 주로 페이지 이동 기능
 
   const handleQueryChange = (e) => {
     setQuery(e.target.value);
@@ -56,7 +56,7 @@ export default function SearchBar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim()) {
-      router.push(`/search?query=${encodeURIComponent(query)}`);
+      router.push(`/search?query=${encodeURIComponent(query)}`);  // 동적 라우팅
     }
   };
 

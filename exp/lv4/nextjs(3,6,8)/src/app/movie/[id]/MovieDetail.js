@@ -30,6 +30,7 @@ export default function MovieDetail({ initialData, params }) {
     return texts[key][language] || texts[key]['ko'];
   };
 
+  //언어 변경 대응
   useEffect(() => {
     let isMounted = true;
     const fetchData = async () => {
