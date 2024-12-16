@@ -64,7 +64,6 @@ export default function SearchResults({ initialQuery }) {
         setMovies(data.results);
       }
     };
-
     fetchData();
   }, [query, language]);
 

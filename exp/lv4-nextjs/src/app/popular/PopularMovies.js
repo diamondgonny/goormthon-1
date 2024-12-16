@@ -21,22 +21,15 @@ export default function PopularMovies({ initialMovies }) {
   };
 
   useEffect(() => {
-    let isMounted = true;
     const fetchData = async () => {
       try {
         const data = await fetchMovies('/movie/popular', language);
-        if (isMounted) {
-          setMovies(data.results);
-        }
+        setMovies(data.results);
       } catch (error) {
         console.error('인기 영화 데이터 로딩 중 오류:', error);
       }
     };
     fetchData();
-
-    return () => {
-      isMounted = false;
-    };
   }, [language]);
 
   return (

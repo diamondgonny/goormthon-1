@@ -32,22 +32,15 @@ export default function MovieDetail({ initialData, params }) {
 
   //언어 변경 대응
   useEffect(() => {
-    let isMounted = true;
     const fetchData = async () => {
       try {
         const data = await fetchMovies(`/movie/${params.id}`, language);
-        if (isMounted) {
-          setMovieData(data);
-        }
+        setMovieData(data);
       } catch (error) {
         console.error('영화 데이터 로딩 중 오류:', error);
       }
     };
     fetchData();
-
-    return () => {
-      isMounted = false;
-    };
   }, [language, params.id]);
 
   if (!movieData) return <div>{getText('loading')}</div>;
