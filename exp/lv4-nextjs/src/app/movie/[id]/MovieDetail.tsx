@@ -20,28 +20,29 @@ interface TextContent {
   };
 }
 
+const texts: TextContent = {
+  loading: {
+    ko: '영화 정보를 불러오는 중...',
+    en: 'Loading movie information...',
+    ja: '映画情報を読み込んでいます...'
+  },
+  overview: {
+    ko: '줄거리',
+    en: 'Overview',
+    ja: 'あらすじ'
+  },
+  noOverview: {
+    ko: '줄거리 정보가 없습니다.',
+    en: 'No overview available.',
+    ja: 'あらすじは利用できません。'
+  }
+};
+
 export default function MovieDetail({ initialData, params }: MovieDetailProps) {
   const { language } = useLanguage();
   const [movieData, setMovieData] = useState<Movie | null>(initialData);
 
   const getText = (key: keyof TextContent): string => {
-    const texts: TextContent = {
-      loading: {
-        ko: '영화 정보를 불러오는 중...',
-        en: 'Loading movie information...',
-        ja: '映画情報を読み込んでいます...'
-      },
-      overview: {
-        ko: '줄거리',
-        en: 'Overview',
-        ja: 'あらすじ'
-      },
-      noOverview: {
-        ko: '줄거리 정보가 없습니다.',
-        en: 'No overview available.',
-        ja: 'あらすじは利用できません。'
-      }
-    };
     return texts[key][language] || texts[key]['ko'];
   };
 

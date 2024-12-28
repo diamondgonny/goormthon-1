@@ -17,18 +17,19 @@ interface TextContent {
   };
 }
 
+const texts: TextContent = {
+  title: {
+    ko: '인기 영화',
+    en: 'Popular Movies',
+    ja: '人気映画'
+  }
+};
+
 export default function PopularMovies({ initialMovies }: PopularMoviesProps) {
   const { language } = useLanguage();
   const [movies, setMovies] = useState<Movie[]>(initialMovies);
 
   const getText = (key: keyof TextContent): string => {
-    const texts: TextContent = {
-      title: {
-        ko: '인기 영화',
-        en: 'Popular Movies',
-        ja: '人気映画'
-      }
-    };
     return texts[key][language] || texts[key]['ko'];
   };
 
