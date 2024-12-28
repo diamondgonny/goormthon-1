@@ -46,7 +46,7 @@ export default function MovieDetail({ initialData, params }: MovieDetailProps) {
     return texts[key][language] || texts[key]['ko'];
   };
 
-  //언어 변경 대응
+  // 언어 변경 대응
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -56,8 +56,13 @@ export default function MovieDetail({ initialData, params }: MovieDetailProps) {
         console.error('영화 데이터 로딩 중 오류:', error);
       }
     };
-    fetchData();
-  }, [language, params.id]);
+    // 초기 상태 일치 : SSR, CSR 간의 일관성을 유지하여 hydration 에러를 해결
+    if (language === 'ko') {
+      setMovieData(initialData); // 초기 데이터는 ko 언어일 때만 사용
+    } else {
+      fetchData(); // 다른 언어로 변경될 때는 새로 fetch
+    }
+  }, [language, params.id, initialData]);
 
   if (!movieData) return <div>{getText('loading')}</div>;
 
