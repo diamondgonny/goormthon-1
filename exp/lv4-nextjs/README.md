@@ -5,27 +5,30 @@
 src/
 ├── app/
 │   ├── globals.css
-│   ├── layout.js
-│   ├── page.js
+│   ├── layout.tsx
+│   ├── page.tsx
 │   ├── movie/
 │   │   └── [id]/
-│   │       ├── page.js
-│   │       └── MovieDetail.js
+│   │       ├── page.tsx
+│   │       └── MovieDetail.tsx
 │   ├── popular/
-│   │   ├── page.js
-│   │   └── PopularMovies.js
+│   │   ├── page.tsx
+│   │   └── PopularMovies.tsx
 │   └── search/
-│       ├── page.js
-│       └── SearchResults.js
+│       ├── page.tsx
+│       └── SearchResults.tsx
 ├── components/
 │   └── client/
-│       ├── MovieCard.js
-│       ├── NavBar.js
-│       └── SearchBar.js
+│       ├── MovieCard.tsx
+│       ├── NavBar.tsx
+│       └── SearchBar.tsx
 ├── context/
-│   └── LanguageContext.js
+│   └── LanguageContext.tsx
+├── types/
+│   ├── language.ts
+│   └── movie.ts
 └── utils/
-    └── api.js
+    └── api.ts
 ```
 
 <명세서>
@@ -39,8 +42,8 @@ src/
 3 Next.js로 영화 목록 확인 앱 페이지화하기
 Next.js를 사용하여 영화 목록 앱을 여러 페이지로 나누고, 페이지 간 이동이 가능하도록 라우팅을 설정합니다. 페이지 간 이동이 가능한 앱 코드와 실행 결과 스크린샷을 결과물로 제출합니다.
 
-~~4 TypeScript로 영화 목록 확인 앱 리팩토링하기
-TypeScript를 사용하여 영화 목록 확인 앱을 리팩토링하고, 컴포넌트의 Props와 상태에 타입을 명시하여 코드의 안정성을 확보합니다. TypeScript로 리팩토링된 영화 목록 확인 앱 코드와 실행 결과 스크린샷을 결과물로 제출합니다.~~
+4 TypeScript로 영화 목록 확인 앱 리팩토링하기
+TypeScript를 사용하여 영화 목록 확인 앱을 리팩토링하고, 컴포넌트의 Props와 상태에 타입을 명시하여 코드의 안정성을 확보합니다. TypeScript로 리팩토링된 영화 목록 확인 앱 코드와 실행 결과 스크린샷을 결과물로 제출합니다.
 
 5 비동기 처리 학습 (Async/Await 활용하기)
 비동기 작업을 처리하는 방법인 async와 await를 사용하여 API 호출 및 비동기 처리를 구현합니다. 예를 들어, 영화 정보를 가져오는 API를 사용하여 데이터를 비동기적으로 불러오고 화면에 표시합니다. 기능이 작동하는 앱 코드와 실행 화면 스크린샷을 결과물로 제출합니다.
