@@ -4,11 +4,25 @@ import { useEffect, useState } from 'react';
 import { fetchSearchMovies } from '@/utils/api';
 import { useLanguage } from '@/context/LanguageContext';
 import MovieCard from '@/components/client/MovieCard';
+import { Movie } from '@/types/movie';
+import { LanguageType } from '@/types/language';
+
+interface SearchResultsViewProps {
+  query: string;
+  movies: Movie[];
+  language: LanguageType;
+}
+
+interface TextContent {
+  [key: string]: {
+    [K in LanguageType]: string;
+  };
+}
 
 // 검색 결과 UI 렌더링을 담당하는 컴포넌트
-function SearchResultsView({ query, movies, language }) {
-  const getText = (key) => {
-    const texts = {
+function SearchResultsView({ query, movies, language }: SearchResultsViewProps) {
+  const getText = (key: keyof TextContent): string => {
+    const texts: TextContent = {
       searchResults: {
         ko: '검색 결과',
         en: 'Search Results',
@@ -45,11 +59,15 @@ function SearchResultsView({ query, movies, language }) {
   );
 }
 
+interface SearchResultsProps {
+  initialQuery: string;
+}
+
 // 검색 결과 데이터 관리를 담당하는 컴포넌트
-export default function SearchResults({ initialQuery }) {
+export default function SearchResults({ initialQuery }: SearchResultsProps) {
   const { language } = useLanguage();
-  const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState(initialQuery);
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [query, setQuery] = useState<string>(initialQuery);
 
   // 예: URL이 /search?q=아바타 에서 /search?q=매트릭스 로 변경될 때
   useEffect(() => {

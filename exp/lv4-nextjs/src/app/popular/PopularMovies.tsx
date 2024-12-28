@@ -4,13 +4,25 @@ import { useEffect, useState } from 'react';
 import { fetchMovies } from '@/utils/api';
 import { useLanguage } from '@/context/LanguageContext';
 import MovieCard from '@/components/client/MovieCard';
+import { Movie } from '@/types/movie';
+import { LanguageType } from '@/types/language';
 
-export default function PopularMovies({ initialMovies }) {
+interface PopularMoviesProps {
+  initialMovies: Movie[];
+}
+
+interface TextContent {
+  [key: string]: {
+    [K in LanguageType]: string;
+  };
+}
+
+export default function PopularMovies({ initialMovies }: PopularMoviesProps) {
   const { language } = useLanguage();
-  const [movies, setMovies] = useState(initialMovies);
+  const [movies, setMovies] = useState<Movie[]>(initialMovies);
 
-  const getText = (key) => {
-    const texts = {
+  const getText = (key: keyof TextContent): string => {
+    const texts: TextContent = {
       title: {
         ko: '인기 영화',
         en: 'Popular Movies',
@@ -24,7 +36,7 @@ export default function PopularMovies({ initialMovies }) {
     const fetchData = async () => {
       try {
         const data = await fetchMovies('/movie/popular', language);
-        setMovies(data.results);
+        setMovies((data as { results: Movie[] }).results);
       } catch (error) {
         console.error('인기 영화 데이터 로딩 중 오류:', error);
       }

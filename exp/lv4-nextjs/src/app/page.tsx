@@ -2,19 +2,26 @@
 
 import SearchBar from '@/components/client/SearchBar';
 import { useLanguage } from '@/context/LanguageContext';
+import { LanguageType } from '@/types/language';
+
+interface TitleText {
+  [key: string]: {
+    [K in LanguageType]: string;
+  };
+}
 
 export default function Home() {
   const { language } = useLanguage();
 
-  const getText = (key) => {
-    const texts = {
+  const getText = (key: keyof TitleText): string => {
+    const texts: TitleText = {
       title: {
         ko: '영화 검색',
         en: 'Movie Search',
         ja: '映画検索'
       }
     };
-    return texts[key][language] || texts[key]['ko'];
+    return texts[key][language as LanguageType] || texts[key]['ko'];
   };
 
   return (

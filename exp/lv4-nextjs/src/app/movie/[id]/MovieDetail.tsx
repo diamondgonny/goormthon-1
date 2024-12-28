@@ -4,13 +4,28 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { fetchMovies } from '@/utils/api';
 import { useLanguage } from '@/context/LanguageContext';
+import { Movie } from '@/types/movie';
+import { LanguageType } from '@/types/language';
 
-export default function MovieDetail({ initialData, params }) {
+interface MovieDetailProps {
+  initialData: Movie;
+  params: {
+    id: string;
+  };
+}
+
+interface TextContent {
+  [key: string]: {
+    [K in LanguageType]: string;
+  };
+}
+
+export default function MovieDetail({ initialData, params }: MovieDetailProps) {
   const { language } = useLanguage();
-  const [movieData, setMovieData] = useState(initialData);
+  const [movieData, setMovieData] = useState<Movie | null>(initialData);
 
-  const getText = (key) => {
-    const texts = {
+  const getText = (key: keyof TextContent): string => {
+    const texts: TextContent = {
       loading: {
         ko: '영화 정보를 불러오는 중...',
         en: 'Loading movie information...',
@@ -35,7 +50,7 @@ export default function MovieDetail({ initialData, params }) {
     const fetchData = async () => {
       try {
         const data = await fetchMovies(`/movie/${params.id}`, language);
-        setMovieData(data);
+        setMovieData(data as Movie);
       } catch (error) {
         console.error('영화 데이터 로딩 중 오류:', error);
       }

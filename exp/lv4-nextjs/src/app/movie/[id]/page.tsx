@@ -1,9 +1,18 @@
 import { fetchMovies } from '@/utils/api';
 import MovieDetail from './MovieDetail';
+import { Movie } from '@/types/movie';
 
-export default async function MoviePage({ params }) {
-  const { id } = await params;
-  const initialData = await fetchMovies(`/movie/${id}`, 'ko');
+interface PageParams {
+  id: string;
+}
+
+interface MoviePageProps {
+  params: PageParams;
+}
+
+export default async function MoviePage({ params }: MoviePageProps) {
+  const { id } = params;
+  const initialData = await fetchMovies(`/movie/${id}`, 'ko') as Movie;
   return <MovieDetail initialData={initialData} params={{ id }} />;
 }
 
