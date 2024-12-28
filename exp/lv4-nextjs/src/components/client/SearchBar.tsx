@@ -1,13 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
+import { LanguageType } from '@/types/language';
+
+interface SearchFormProps {
+  query: string;
+  onQueryChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  language: LanguageType;
+}
+
+interface TextContent {
+  [key: string]: {
+    [K in LanguageType]: string;
+  };
+}
 
 // 검색 폼 UI 렌더링을 담당하는 컴포넌트
-function SearchForm({ query, onQueryChange, onSubmit, language }) {
-  const getText = (key) => {
-    const texts = {
+function SearchForm({ query, onQueryChange, onSubmit, language }: SearchFormProps) {
+  const getText = (key: keyof TextContent): string => {
+    const texts: TextContent = {
       placeholder: {
         ko: "영화 제목을 입력하세요...",
         en: "Search for a movie...",
@@ -45,15 +59,15 @@ function SearchForm({ query, onQueryChange, onSubmit, language }) {
 
 // 검색 폼 로직을 담당하는 컴포넌트
 export default function SearchBar() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState<string>('');
   const { language } = useLanguage();
   const router = useRouter();  // 주로 페이지 이동 기능
 
-  const handleQueryChange = (e) => {
+  const handleQueryChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (query.trim()) {
       router.push(`/search?query=${encodeURIComponent(query)}`);  // 동적 라우팅
@@ -68,4 +82,4 @@ export default function SearchBar() {
       language={language}
     />
   );
-} 
+}

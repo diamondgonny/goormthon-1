@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { Movie } from '@/types/movie';
 
-export default function MovieCard({ movie }) {
+interface MovieCardProps {
+  movie: Movie;
+}
+
+export default function MovieCard({ movie }: MovieCardProps) {
   return (
     <div className="w-full max-w-[200px] mx-auto bg-gray-800 shadow-sm rounded-lg">
       <Link href={`/movie/${movie.id}`}>
@@ -17,7 +22,7 @@ export default function MovieCard({ movie }) {
         <div className="p-3">
           <h2 className="text-sm font-medium text-gray-200">{movie.title}</h2>
           <p className="text-xs text-gray-400 mt-1">
-            ⭐ {movie.vote_average.toFixed(1)}
+            ⭐ {movie.vote_average?.toFixed(1)}
           </p>
         </div>
       </Link>

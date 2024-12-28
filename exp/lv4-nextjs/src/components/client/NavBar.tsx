@@ -2,16 +2,23 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import { LanguageType } from '@/types/language';
+
+interface NavTexts {
+  [key: string]: {
+    [K in LanguageType]: string;
+  };
+}
 
 export default function NavBar() {
   const { language, setLanguage } = useLanguage();
 
-  const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLanguage(e.target.value as LanguageType);
   };
 
-  const getNavText = (key) => {
-    const texts = {
+  const getNavText = (key: keyof NavTexts): string => {
+    const texts: NavTexts = {
       home: {
         ko: '홈',
         en: 'Home',
