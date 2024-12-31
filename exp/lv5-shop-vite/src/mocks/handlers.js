@@ -23,9 +23,9 @@ export const handlers = [
       },
     ]);
   }),
-  // http.post("http://localhost:4000/order", async () => {
-  //   let dummyData = [{ orderNumber: 2131234324, price: 2000 }];
-  //   await delay(100);
-  //   return HttpResponse.json(dummyData);
-  // }),
+  http.post("http://localhost:4000/order", async () => {
+    let dummyData = [{ orderNumber: 2131234324, price: 2000 }];
+    await delay(100);
+    return HttpResponse.json(dummyData);
+  }),
 ];
