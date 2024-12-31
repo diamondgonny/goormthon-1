@@ -1,17 +1,23 @@
 import React from "react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 function Options({ name, updateItemCount }) {
   return (
-    <form>
-      <input
-        type="checkbox"
-        id={`${name} option`}
-        onChange={(event) => {
-          updateItemCount(name, event.target.checked ? 1 : 0);
+    <div className="flex items-center space-x-2 p-2">
+      <Checkbox
+        id={`${name}-option`}
+        onCheckedChange={(checked) => {
+          updateItemCount(name, checked ? 1 : 0);
         }}
-      />{" "}
-      <label htmlFor={`${name} option`}>{name}</label>
-    </form>
+      />
+      <Label
+        htmlFor={`${name}-option`}
+        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      >
+        {name}
+      </Label>
+    </div>
   );
 }
 

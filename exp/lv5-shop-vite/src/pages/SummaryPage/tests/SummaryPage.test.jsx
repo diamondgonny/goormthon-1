@@ -2,12 +2,12 @@ import { render, screen } from "../../../test-utils";
 import SummaryPage from "../SummaryPage";
 
 test("checkbox and button", () => {
-  render(<SummaryPage />);
+  render(<SummaryPage setStep={() => {}} />);
   const checkbox = screen.getByRole("checkbox", {
-    name: "주문하려는 것을 확인하셨나요?",
+    name: "주문하실 상품의 내용을 확인하셨습니까?",
   });
-  expect(checkbox.checked).toBe(false);
+  expect(checkbox.getAttribute("aria-checked")).toBe("false");
 
-  const confirmButton = screen.getByRole("button", { name: "주문 확인" });
+  const confirmButton = screen.getByRole("button", { name: "주문하기" });
   expect(confirmButton.disabled).toBeTruthy();
 });

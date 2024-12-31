@@ -41,22 +41,29 @@ function Type({ orderType }) {
   ));
 
   let orderTypeKorean = orderType === "products" ? "상품" : "옵션";
+
   return (
-    <>
-      <h2>주문 종류</h2>
-      <p>하나의 가격</p>
-      <p>
-        {orderTypeKorean} 총 가격: {orderDatas.totals[orderType]}
-      </p>
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <h2 className="text-lg font-semibold">{orderTypeKorean} 주문</h2>
+        <p className="text-sm text-gray-500">
+          개별 가격으로 주문하실 수 있습니다
+        </p>
+        <p className="text-sm font-medium">
+          {orderTypeKorean} 총 가격: {orderDatas.totals[orderType]}
+        </p>
+      </div>
+
       <div
-        style={{
-          display: "flex",
-          flexDirection: orderType === "options" && "column",
-        }}
+        className={`grid gap-3 ${
+          orderType === "products"
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            : "grid-cols-1"
+        }`}
       >
         {optionItems}
       </div>
-    </>
+    </div>
   );
 }
 
