@@ -11,7 +11,7 @@ export default defineConfig({
     css: true,
   },
   server: {
-    port: 4000,
+    port: 3000,
     strict: true,
   },
 });
