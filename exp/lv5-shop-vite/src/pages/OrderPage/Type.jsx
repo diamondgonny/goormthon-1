@@ -5,7 +5,7 @@ import Options from "./Options";
 import ErrorBanner from "../../components/ErrorBanner";
 import { OrderContext } from "../../contexts/OrderContext";
 
-function Type({ orderType }) {
+function Type({ orderType, searchQuery }) {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(false);
   const [orderDatas, updateItemCount] = useContext(OrderContext);
@@ -29,7 +29,14 @@ function Type({ orderType }) {
 
   const ItemComponents = orderType === "products" ? Products : Options;
 
-  const optionItems = items.map((item) => (
+  const filteredItems =
+    orderType === "products" && searchQuery
+      ? items.filter((item) =>
+          item.name.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      : items;
+
+  const optionItems = filteredItems.map((item) => (
     <ItemComponents
       key={item.name}
       name={item.name}

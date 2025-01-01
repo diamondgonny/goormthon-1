@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { OrderContext } from "../../contexts/OrderContext";
 import Type from "./Type";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,27 +8,31 @@ import { Search } from "lucide-react";
 
 function OrderPage({ setStep }) {
   const [orderDatas] = useContext(OrderContext);
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="container mx-auto p-6">
       <Card className="mb-6">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-2xl font-bold">
+            <CardTitle className="text-3xl font-bold">
               Travel Products
             </CardTitle>
             <div className="relative w-1/2 lg:w-full lg:max-w-sm">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
+                name="search"
                 placeholder="Search places.."
                 className="w-full pl-8 bg-background"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
         </CardHeader>
         <CardContent>
-          <Type orderType="products" />
+          <Type orderType="products" searchQuery={searchQuery} />
         </CardContent>
       </Card>
 
