@@ -36,7 +36,7 @@ function Type({ orderType, searchQuery }) {
         )
       : items;
 
-  const optionItems = filteredItems.map((item) => (
+  const shopItems = filteredItems.map((item) => (
     <ItemComponents
       key={item.name}
       name={item.name}
@@ -68,7 +68,7 @@ function Type({ orderType, searchQuery }) {
             : "grid-cols-1"
         }`}
       >
-        {optionItems}
+        {shopItems}
       </div>
     </div>
   );
