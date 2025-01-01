@@ -1,5 +1,4 @@
 import "../assets/css/calendar.css";
-import taskData from "../json/tasks/tasks.json";
 import ReactCalendar from "react-calendar";
 import DateUtils from "../utils/DateUtils";
 import { useState } from "react";

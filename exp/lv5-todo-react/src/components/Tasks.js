@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "../assets/css/tasks.css";
 import DateUtils from "../utils/DateUtils";
 
 
 function Tasks({ selectedDate, categories, tasks, setTasks,setAddTaskModal,setModifyTaskModal,setSelectedTask}) {
   const dateUtils = new DateUtils();
-  
+
   const filteredTasks = tasks.filter(task => {
     const taskDate = new Date(task.date);
     return (
