@@ -77,6 +77,7 @@ function Calendar({ selectedDate, setSelectedDate,tasks }) {
           <button
             className="nav-button prev-month"
             onClick={goToPreviousMonth}
+            aria-label="Previous Month"
           >
             <FaChevronLeft />
           </button>
@@ -84,13 +85,14 @@ function Calendar({ selectedDate, setSelectedDate,tasks }) {
           <button
             className="nav-button next-month"
             onClick={goToNextMonth}
+            aria-label="Next Month"
           >
             <FaChevronRight />
           </button>
         </div>
         <div className="todo-check-value-big-box">
           <div className="todo-check-value-small-box">
-            <div className="todo-check-value">{getMonthlyTaskStats()}</div>
+            <div className="todo-check-value" role="status" aria-label="Monthly Task Statistics">{getMonthlyTaskStats()}</div>
           </div>
         </div>
       </header>

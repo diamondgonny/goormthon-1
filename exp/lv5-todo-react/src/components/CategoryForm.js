@@ -112,11 +112,18 @@ function CategoryForm({ isAddOpen, isEditOpen, editingCategory, categories, setC
             autoFocus={isEditOpen}
           />
         </section>
-        <section className="category-color-section">
+        <section 
+          className="category-color-section"
+          role="group"
+          aria-label="Select Category Color"
+        >
           {categoryColors.map((color) => (
             <div
               key={color}
               className="category-color-item"
+              role="button"
+              aria-label={`Color ${color}`}
+              aria-pressed={selectedColor === color}
               onClick={() => setSelectedColor(color)}
               style={{
                 backgroundColor: color,
@@ -128,6 +135,8 @@ function CategoryForm({ isAddOpen, isEditOpen, editingCategory, categories, setC
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 448 512"
                   style={checkSVGStyle}
+                  role="img"
+                  aria-label="Selected"
                 >
                   <path d={CHECK_SVG_PATH} />
                 </svg>

@@ -8,28 +8,50 @@ import ModifyTaskModal from "../components/ModifyTaskModal";
 
 const TEXT_CATEGORY_UNSPECIFIED = "미지정";
 const COLOR_CATEGORY_UNSPECIFIED = "#59E7C1"
-// 카테고리 초기 데이터 설정
-let defaultCategory = { id: 0, name: TEXT_CATEGORY_UNSPECIFIED, color: COLOR_CATEGORY_UNSPECIFIED,};
-if(!localStorage.getItem("categories")){
-  localStorage.setItem("categories", JSON.stringify([defaultCategory]));
-}
-const initialCategories = JSON.parse(localStorage.getItem("categories"));
-
-// 할 일 초기 데이터 설정
-const initialTasks = localStorage.getItem("tasks")
-? JSON.parse(localStorage.getItem("tasks"))
-: [];
 
 function DashboardPage() {
+  // **localStorage 초기화 로직을 컴포넌트 내부로 이동함**
+  //(컴포넌트 외부에서 실행되는 초기화 로직이 테스트 시점의 localStorage mock 데이터를 반영하지 못해 발생한 이슈)
+
+  // 테스트 에러 결과를 보면, DashboardPage 컴포넌트에서 initialCategories가 우리가 테스트에서 의도한 mockCategories가 아니라, [defaultCategory]만 들어있는 상태로 잡히고 있었다.
+  // 이는 테스트 실행 시점과 모듈이 import될 때 실행되는 로직이 서로 엇갈리기 때문이었다.
+
+  // Jest 테스트에서는, 이런 식으로 진행된다:
+  // 1. import DashboardPage from "./DashboardPage";
+  // 2. 그 다음 jest.spyOn(Storage.prototype, "getItem") 등등으로 localStorage를 mock 세팅
+  // 문제는 1번 시점에 DashboardPage.js 최상단 로직이 이미 실행돼서 localStorage에 [defaultCategory]만 들어간 상태가 된다는 것
+  // 테스트코드에서 2번으로 mock을 설정해줘도, 이미 DashboardPage.js는 최상단 localStorage 로직이 이미 실행되어 mock 데이터가 무시됨
+
+  const getInitialCategories = () => {
+    const defaultCategory = {
+      id: 0,
+      name: TEXT_CATEGORY_UNSPECIFIED,
+      color: COLOR_CATEGORY_UNSPECIFIED
+    };
+
+    if (!localStorage.getItem("categories")) {
+      localStorage.setItem("categories", JSON.stringify([defaultCategory]));
+    }
+    return JSON.parse(localStorage.getItem("categories"));
+  };
+
+  const getInitialTasks = () => {
+    return localStorage.getItem("tasks")
+      ? JSON.parse(localStorage.getItem("tasks"))
+      : [];
+  };
+
+  // useState 초기값을 함수로 설정
+  const [tasks, setTasks] = useState(getInitialTasks);
+  const [categories, setCategories] = useState(getInitialCategories);
+
   // Task 관련 상태
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [tasks, setTasks] = useState(initialTasks); // Task 상태
   const [isAddTaskModalOpen, setAddTaskModal] = useState(false); // Task 추가 모달
   const [isModifyTaskModalOpen, setModifyTaskModal] = useState(false); // Task 추정 모달
   const [selectedTask, setSelectedTask] = useState(null);
   
   // category 관련 상태
-  const [categories, setCategories] = useState(initialCategories); // 카테고리 상태
   const [editingCategory, setEditingCategory] = useState(null); // 편집할 카테고리
   const [categoryModals, setCategoryModals] = useState({
     isViewOpen: false, // 카테고리 조회 모달

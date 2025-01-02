@@ -19,6 +19,7 @@ function CategoryViewModal({ categories, setEditingCategory, openCategoryModal, 
         <button
           className="btn-close-modal"
           onClick={closeCategoryModals}
+          aria-label="close"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
             <path fill="#ffffff" d={CLOSE_SVG_PATH} />
@@ -32,6 +33,7 @@ function CategoryViewModal({ categories, setEditingCategory, openCategoryModal, 
           <button
             className="btn-add-category"
             onClick={() => openCategoryModal('isAddOpen')}
+            aria-label="add"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path fill="#49D7B1" d={ADD_SVG_PATH} />
