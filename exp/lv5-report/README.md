@@ -37,7 +37,7 @@
 - HTML 요소의 상태, 속성, 내용 등을 검증
 - expect 예: toBeInTheDocument(), toBeVisible(), toHaveTextContent(), toBeDisabled(), toHaveClass()...
 
-## Jest Setup & Teardown
+### Jest Setup & Teardown
 - beforeEach: 각 테스트 실행 전에 공통 초기화 작업을 수행하며, 독립적이고 일관된 테스트 환경을 보장
 - afterEach: 각 테스트 실행 후 리소스 정리나 상태 초기화를 통해 메모리 누수 및 테스트 간 간섭 방지
 - afterAll: 모든 테스트 완료 후 전역 리소스 해제나 클린업 작업에 사용, 예를 들어 DB 연결 종료
