@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AddTaskModal from '../AddTaskModal';
 
@@ -96,11 +96,12 @@ describe('AddTaskModal Component', () => {
     expect(mockOnClose).toHaveBeenCalled();
   });
 
-  test('취소 버튼(X)을 클릭하면 모달이 닫히는지 확인', () => {
+  test('취소 버튼(X)을 클릭하면 모달이 닫히는지 확인', async () => {
+    const user = userEvent.setup();
     render(<AddTaskModal {...defaultProps} />);
 
     const closeButton = screen.getByRole('button', { name: 'Close' });
-    fireEvent.click(closeButton);
+    await user.click(closeButton);
 
     expect(mockOnClose).toHaveBeenCalled();
   });
