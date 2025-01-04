@@ -1,6 +1,8 @@
 <프로젝트 주요 파일 구조>
 ```
 src/
+├── assets/
+│   └── css/
 ├── components/
 │   ├── tests/
 │   ├── AddTaskModal.jsx
@@ -10,14 +12,12 @@ src/
 │   ├── CategoryForm.jsx
 │   ├── CategoryViewModal.jsx
 │   └── CategoryEditModal.jsx
+├── json/
+├── utils/
+│   └── DateUtils.js
 ├── views/
 │   ├── tests/
 │   └── DashboardPage.jsx
-├── utils/
-│   └── DateUtils.js
-├── assets/
-│   └── css/
-├── json/
 ├── App.jsx
 ├── index.jsx
 └── setupTests.js
